@@ -44,8 +44,9 @@ func (c MongoClient) GetUserByID(id string) (model.User, error) {
 }
 
 func (c MongoClient) GetAllUsers() ([]model.User, error) {
+	filter := bson.D{}
 
-	cur, err := c.Client.Find(context.Background(), bson.D{})
+	cur, err := c.Client.Find(context.Background(), filter)
 
 	if err != nil {
 		return []model.User{}, err
